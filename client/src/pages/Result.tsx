@@ -325,18 +325,15 @@ export default function Result() {
                 </Button>
               </div>
               
-              <div className="grid grid-cols-3 gap-4 mt-6 text-center animate-fade-in-up-delay-3">
-                <div className="space-y-1 p-3 bg-white/10 rounded-lg backdrop-blur-sm border border-white/10">
-                  <div className="text-2xl font-bold text-purple-100">100+</div>
-                  <div className="text-xs text-purple-200">AI 툴 랭킹</div>
+              <div className="grid grid-cols-3 gap-2 md:gap-4 mt-6 text-center animate-fade-in-up-delay-3">
+                <div className="space-y-1 p-2 md:p-3 bg-white/10 rounded-lg backdrop-blur-sm border border-white/10">
+                  <div className="text-xs md:text-sm text-purple-200">AI 툴 랭킹</div>
                 </div>
-                <div className="space-y-1 p-3 bg-white/10 rounded-lg backdrop-blur-sm border border-white/10">
-                  <div className="text-2xl font-bold text-purple-100">24/7</div>
-                  <div className="text-xs text-purple-200">실시간 뉴스</div>
+                <div className="space-y-1 p-2 md:p-3 bg-white/10 rounded-lg backdrop-blur-sm border border-white/10">
+                  <div className="text-xs md:text-sm text-purple-200">실시간 뉴스</div>
                 </div>
-                <div className="space-y-1 p-3 bg-white/10 rounded-lg backdrop-blur-sm border border-white/10">
-                  <div className="text-2xl font-bold text-purple-100">1000+</div>
-                  <div className="text-xs text-purple-200">프롬프트</div>
+                <div className="space-y-1 p-2 md:p-3 bg-white/10 rounded-lg backdrop-blur-sm border border-white/10">
+                  <div className="text-xs md:text-sm text-purple-200">프롬프트</div>
                 </div>
               </div>
             </div>
