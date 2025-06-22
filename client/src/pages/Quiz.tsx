@@ -25,8 +25,9 @@ export default function Quiz() {
   // Redirect to result page when quiz is complete
   useEffect(() => {
     if (isQuizComplete()) {
-      console.log("Quiz complete, redirecting to result");
-      setLocation("/result");
+      setTimeout(() => {
+        setLocation("/result");
+      }, 300);
     }
   }, [isQuizComplete, setLocation]);
 
@@ -36,9 +37,8 @@ export default function Quiz() {
     // Check if this was the last question and redirect immediately
     if (answers.length + 1 === totalQuestions) {
       setTimeout(() => {
-        console.log("Last question answered, redirecting to result page");
         setLocation("/result");
-      }, 200);
+      }, 500);
     }
   };
 

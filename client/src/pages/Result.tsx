@@ -14,16 +14,25 @@ export default function Result() {
 
   // Redirect to home if no result
   useEffect(() => {
-    if (!result) {
-      console.log("No result found, redirecting to home");
-      setLocation("/");
-    } else {
-      console.log("Result found:", result.name);
-    }
+    const checkResult = () => {
+      const savedResult = localStorage.getItem("quizResult");
+      if (!result && !savedResult) {
+        setTimeout(() => setLocation("/"), 100);
+      }
+    };
+    
+    checkResult();
   }, [result, setLocation]);
 
   if (!result) {
-    return null;
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-gray-600">결과를 불러오는 중...</p>
+        </div>
+      </div>
+    );
   }
 
   const handleDownloadResult = async () => {

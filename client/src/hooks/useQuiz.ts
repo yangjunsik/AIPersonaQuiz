@@ -25,7 +25,8 @@ export function useQuiz() {
     }
     
     if (savedResult) {
-      setResult(JSON.parse(savedResult));
+      const parsedResult = JSON.parse(savedResult);
+      setResult(parsedResult);
     }
   }, []);
 
@@ -47,14 +48,14 @@ export function useQuiz() {
     const updatedAnswers = [...answers, newAnswer];
     setAnswers(updatedAnswers);
     
-    console.log("Answer added, total answers:", updatedAnswers.length, "out of", questions.length);
-    
     if (updatedAnswers.length === questions.length) {
       // Calculate result
-      console.log("Quiz completed, calculating result...");
       const calculatedResult = calculateResult(updatedAnswers);
-      console.log("Result calculated:", calculatedResult);
-      setResult(calculatedResult);
+      
+      // Set result with a delay to ensure state updates properly
+      setTimeout(() => {
+        setResult(calculatedResult);
+      }, 100);
     } else {
       setCurrentQuestion(updatedAnswers.length);
     }
@@ -121,9 +122,7 @@ export function useQuiz() {
   };
 
   const isQuizComplete = () => {
-    const complete = answers.length === questions.length;
-    console.log("isQuizComplete called:", complete, "answers:", answers.length, "questions:", questions.length);
-    return complete;
+    return answers.length === questions.length;
   };
 
   const hasAnsweredCurrentQuestion = () => {
