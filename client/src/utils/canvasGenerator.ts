@@ -1,5 +1,19 @@
 import { AIResult } from "@/data/aiResults";
 
+function drawRoundedRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
+  ctx.beginPath();
+  ctx.moveTo(x + radius, y);
+  ctx.lineTo(x + width - radius, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+  ctx.lineTo(x + width, y + height - radius);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+  ctx.lineTo(x + radius, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+  ctx.lineTo(x, y + radius);
+  ctx.quadraticCurveTo(x, y, x + radius, y);
+  ctx.closePath();
+}
+
 export function generateResultImage(result: AIResult): Promise<string> {
   return new Promise((resolve) => {
     const canvas = document.createElement('canvas');
@@ -27,48 +41,49 @@ export function generateResultImage(result: AIResult): Promise<string> {
     }
     
     // Main content background
+    const contentX = 60;
     const contentY = 150;
+    const contentWidth = canvas.width - 120;
     const contentHeight = 780;
     const borderRadius = 30;
     
     // Draw rounded rectangle for content area
     ctx.fillStyle = 'white';
-    ctx.beginPath();
-    ctx.roundRect(80, contentY, canvas.width - 160, contentHeight, borderRadius);
+    drawRoundedRect(ctx, contentX, contentY, contentWidth, contentHeight, borderRadius);
     ctx.fill();
     
     // App title at top
     ctx.fillStyle = '#1F2937';
-    ctx.font = 'bold 36px Inter, sans-serif';
+    ctx.font = 'bold 36px Arial, sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText('내 AI 분신 찾기', canvas.width / 2, 100);
     
     // AI Icon (large emoji)
-    ctx.font = '120px serif';
+    ctx.font = '120px Arial';
     ctx.textAlign = 'center';
     ctx.fillText(result.icon, canvas.width / 2, contentY + 150);
     
     // AI Name
     ctx.fillStyle = '#1F2937';
-    ctx.font = 'bold 48px Inter, sans-serif';
+    ctx.font = 'bold 48px Arial, sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText(result.name, canvas.width / 2, contentY + 220);
     
     // AI Tagline
     ctx.fillStyle = '#6B7280';
-    ctx.font = '28px Inter, sans-serif';
+    ctx.font = '28px Arial, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(result.tagline, canvas.width / 2, contentY + 260);
+    ctx.fillText(result.tagline, canvas.width / 2, contentY + 270);
     
     // Description (wrapped text)
-    const maxWidth = canvas.width - 200;
+    const maxWidth = contentWidth - 80;
     const lineHeight = 36;
     const words = result.description.split(' ');
     let line = '';
     let y = contentY + 340;
     
     ctx.fillStyle = '#374151';
-    ctx.font = '24px Inter, sans-serif';
+    ctx.font = '24px Arial, sans-serif';
     ctx.textAlign = 'center';
     
     for (let n = 0; n < words.length; n++) {
@@ -77,25 +92,27 @@ export function generateResultImage(result: AIResult): Promise<string> {
       const testWidth = metrics.width;
       
       if (testWidth > maxWidth && n > 0) {
-        ctx.fillText(line, canvas.width / 2, y);
+        ctx.fillText(line.trim(), canvas.width / 2, y);
         line = words[n] + ' ';
         y += lineHeight;
       } else {
         line = testLine;
       }
     }
-    ctx.fillText(line, canvas.width / 2, y);
+    if (line.trim()) {
+      ctx.fillText(line.trim(), canvas.width / 2, y);
+    }
     
     // Strengths section
     y += 80;
     ctx.fillStyle = '#1F2937';
-    ctx.font = 'bold 28px Inter, sans-serif';
+    ctx.font = 'bold 28px Arial, sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText('주요 강점', canvas.width / 2, y);
     
     y += 50;
     ctx.fillStyle = '#059669';
-    ctx.font = '24px Inter, sans-serif';
+    ctx.font = '24px Arial, sans-serif';
     
     result.strengths.forEach((strength, index) => {
       ctx.fillText(`✓ ${strength}`, canvas.width / 2, y + (index * 35));
@@ -104,13 +121,26 @@ export function generateResultImage(result: AIResult): Promise<string> {
     // Footer
     y = contentY + contentHeight - 60;
     ctx.fillStyle = '#9CA3AF';
-    ctx.font = '20px Inter, sans-serif';
+    ctx.font = '20px Arial, sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText('나도 테스트해보기 → myai.quiz', canvas.width / 2, y);
     
     // Convert to data URL directly
-    const dataUrl = canvas.toDataURL('image/png');
-    resolve(dataUrl);
+    try {
+      const dataUrl = canvas.toDataURL('image/png');
+      resolve(dataUrl);
+    } catch (error) {
+      console.error('Canvas toDataURL failed:', error);
+      // Fallback: create a simple colored rectangle
+      ctx.fillStyle = result.color || '#6366F1';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'white';
+      ctx.font = '48px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(result.name, canvas.width / 2, canvas.height / 2);
+      const fallbackDataUrl = canvas.toDataURL('image/png');
+      resolve(fallbackDataUrl);
+    }
   });
 }
 
