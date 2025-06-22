@@ -95,14 +95,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Quick Links */}
-            <div className="pt-6 flex justify-center">
-              <Link href="/analytics">
-                <Button variant="ghost" size="sm" className="text-purple-200 hover:text-white hover:bg-white/10">
-                  📊 실시간 인기 순위 보기
-                </Button>
-              </Link>
-            </div>
+
           </div>
         </div>
       </div>
