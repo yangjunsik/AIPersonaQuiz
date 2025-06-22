@@ -47,9 +47,13 @@ export function useQuiz() {
     const updatedAnswers = [...answers, newAnswer];
     setAnswers(updatedAnswers);
     
+    console.log("Answer added, total answers:", updatedAnswers.length, "out of", questions.length);
+    
     if (updatedAnswers.length === questions.length) {
       // Calculate result
+      console.log("Quiz completed, calculating result...");
       const calculatedResult = calculateResult(updatedAnswers);
+      console.log("Result calculated:", calculatedResult);
       setResult(calculatedResult);
     } else {
       setCurrentQuestion(updatedAnswers.length);
@@ -117,7 +121,9 @@ export function useQuiz() {
   };
 
   const isQuizComplete = () => {
-    return answers.length === questions.length;
+    const complete = answers.length === questions.length;
+    console.log("isQuizComplete called:", complete, "answers:", answers.length, "questions:", questions.length);
+    return complete;
   };
 
   const hasAnsweredCurrentQuestion = () => {

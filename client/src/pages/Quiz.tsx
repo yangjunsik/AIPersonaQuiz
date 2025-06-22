@@ -14,7 +14,9 @@ export default function Quiz() {
     getProgress,
     isQuizComplete,
     hasAnsweredCurrentQuestion,
-    currentQuestion
+    currentQuestion,
+    answers,
+    totalQuestions
   } = useQuiz();
 
   const question = getCurrentQuestion();
@@ -23,12 +25,21 @@ export default function Quiz() {
   // Redirect to result page when quiz is complete
   useEffect(() => {
     if (isQuizComplete()) {
+      console.log("Quiz complete, redirecting to result");
       setLocation("/result");
     }
   }, [isQuizComplete, setLocation]);
 
   const handleAnswer = (value: number, aiTypes: string[]) => {
     answerQuestion(question.id, value, aiTypes);
+    
+    // Check if this was the last question and redirect immediately
+    if (answers.length + 1 === totalQuestions) {
+      setTimeout(() => {
+        console.log("Last question answered, redirecting to result page");
+        setLocation("/result");
+      }, 200);
+    }
   };
 
   const handlePrevious = () => {

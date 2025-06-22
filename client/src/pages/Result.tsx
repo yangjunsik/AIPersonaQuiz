@@ -15,7 +15,10 @@ export default function Result() {
   // Redirect to home if no result
   useEffect(() => {
     if (!result) {
+      console.log("No result found, redirecting to home");
       setLocation("/");
+    } else {
+      console.log("Result found:", result.name);
     }
   }, [result, setLocation]);
 
