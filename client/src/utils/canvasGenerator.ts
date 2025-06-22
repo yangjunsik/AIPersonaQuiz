@@ -108,13 +108,9 @@ export function generateResultImage(result: AIResult): Promise<string> {
     ctx.textAlign = 'center';
     ctx.fillText('나도 테스트해보기 → myai.quiz', canvas.width / 2, y);
     
-    // Convert to blob and create URL
-    canvas.toBlob((blob) => {
-      if (blob) {
-        const url = URL.createObjectURL(blob);
-        resolve(url);
-      }
-    }, 'image/png');
+    // Convert to data URL directly
+    const dataUrl = canvas.toDataURL('image/png');
+    resolve(dataUrl);
   });
 }
 
@@ -122,115 +118,102 @@ export function downloadImage(imageUrl: string, filename: string) {
   // Check if running on mobile
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   
-  if (isMobile) {
-    // For mobile, we need to handle this differently
-    // First, let's try to convert the blob to a data URL synchronously
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d')!;
-    
-    // Create an image element to load the blob
-    const img = new Image();
-    img.onload = function() {
-      // Set canvas size to match image
-      canvas.width = img.width;
-      canvas.height = img.height;
-      
-      // Draw the image to canvas
-      ctx.drawImage(img, 0, 0);
-      
-      // Convert canvas to data URL
-      const dataUrl = canvas.toDataURL('image/png');
-      
-      // Create HTML content with embedded data URL
-      const htmlContent = `
-        <html>
-          <head>
-            <title>AI 분신 결과 이미지</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <style>
-              body { 
-                margin: 0; 
-                padding: 20px; 
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                text-align: center; 
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-              }
-              .container {
-                background: white;
-                border-radius: 20px;
-                padding: 20px;
-                box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-                max-width: 90%;
-              }
-              img { 
-                max-width: 100%; 
-                height: auto; 
-                border-radius: 15px; 
-                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-                display: block;
-                margin: 0 auto;
-              }
-              .instructions { 
-                margin-top: 20px; 
-                color: #555; 
-                font-size: 16px; 
-                line-height: 1.5;
-                font-weight: 500;
-              }
-              .sub-text {
-                margin-top: 10px;
-                color: #888;
-                font-size: 14px;
-              }
-            </style>
-          </head>
-          <body>
-            <div class="container">
-              <img src="${dataUrl}" alt="AI 분신 결과">
-              <div class="instructions">
-                📱 이미지를 길게 눌러서 저장하세요
-              </div>
-              <div class="sub-text">
-                갤러리에 저장 후 SNS에 공유해보세요!
-              </div>
-            </div>
-          </body>
-        </html>
-      `;
-      
-      // Open new window with the HTML content
-      const newWindow = window.open('', '_blank');
-      if (newWindow) {
-        newWindow.document.write(htmlContent);
-        newWindow.document.close();
-      }
-    };
-    
-    img.onerror = function() {
-      // Fallback: create a simple alert
-      alert('이미지 저장을 위해 스크린샷을 찍어주세요!');
-    };
-    
-    // Load the blob URL into the image
-    img.src = imageUrl;
-    
-  } else {
-    // For desktop, use the original download method
-    const link = document.createElement('a');
-    link.href = imageUrl;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
+  // Since we're now using data URLs directly, we can handle both mobile and desktop the same way
+  const htmlContent = `
+    <html>
+      <head>
+        <title>AI 분신 결과 이미지</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+          body { 
+            margin: 0; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            text-align: center; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
+          .container {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            max-width: 90%;
+          }
+          img { 
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: block;
+            margin: 0 auto;
+          }
+          .instructions { 
+            margin-top: 20px; 
+            color: #555; 
+            font-size: 16px; 
+            line-height: 1.5;
+            font-weight: 500;
+          }
+          .sub-text {
+            margin-top: 10px;
+            color: #888;
+            font-size: 14px;
+          }
+          .download-btn {
+            margin-top: 15px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+          }
+          .download-btn:hover {
+            background: #5a67d8;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <img src="${imageUrl}" alt="AI 분신 결과" id="resultImage">
+          <div class="instructions">
+            ${isMobile ? '📱 이미지를 길게 눌러서 저장하세요' : '🖱️ 우클릭하여 이미지를 저장하세요'}
+          </div>
+          <div class="sub-text">
+            갤러리에 저장 후 SNS에 공유해보세요!
+          </div>
+          ${!isMobile ? `
+            <button class="download-btn" onclick="downloadDirectly()">
+              💾 다운로드
+            </button>
+          ` : ''}
+        </div>
+        
+        <script>
+          function downloadDirectly() {
+            const link = document.createElement('a');
+            link.href = '${imageUrl}';
+            link.download = '${filename}';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }
+        </script>
+      </body>
+    </html>
+  `;
   
-  // Clean up the blob URL after a delay
-  setTimeout(() => {
-    URL.revokeObjectURL(imageUrl);
-  }, 5000);
+  // Open new window with the HTML content
+  const newWindow = window.open('', '_blank');
+  if (newWindow) {
+    newWindow.document.write(htmlContent);
+    newWindow.document.close();
+  }
 }
