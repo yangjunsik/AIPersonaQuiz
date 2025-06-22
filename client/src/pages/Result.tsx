@@ -1,6 +1,5 @@
 import { useLocation } from "wouter";
 import { useQuiz } from "@/hooks/useQuiz";
-import { generateResultImage, downloadImage } from "@/utils/canvasGenerator";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Download, Share2, RefreshCw, ExternalLink, CheckCircle } from "lucide-react";
@@ -11,7 +10,6 @@ export default function Result() {
   const [, setLocation] = useLocation();
   const { result, resetQuiz } = useQuiz();
   const { toast } = useToast();
-  const [isGeneratingImage, setIsGeneratingImage] = useState(false);
 
   // Redirect to home if no result
   useEffect(() => {
@@ -36,25 +34,7 @@ export default function Result() {
     );
   }
 
-  const handleDownloadResult = async () => {
-    setIsGeneratingImage(true);
-    try {
-      const imageUrl = await generateResultImage(result);
-      downloadImage(imageUrl, `내-AI-분신-${result.name}.png`);
-      toast({
-        title: "이미지 저장 완료!",
-        description: "결과 이미지가 다운로드되었습니다.",
-      });
-    } catch (error) {
-      toast({
-        title: "오류 발생",
-        description: "이미지 저장 중 문제가 발생했습니다.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsGeneratingImage(false);
-    }
-  };
+
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -184,13 +164,14 @@ export default function Result() {
         <div className="space-y-3 md:space-y-4">
           {/* Download Result Image */}
           <Button
-            onClick={handleDownloadResult}
-            disabled={isGeneratingImage}
+            onClick={() => {
+              alert('📱 스크린샷으로 저장하세요!\n\n컴퓨터: Ctrl+Shift+S 또는 캡처 도구\n모바일: 전원+볼륨다운 버튼\n\n저장 후 SNS에 공유해보세요!');
+            }}
             className="w-full bg-quiz-gradient text-white font-semibold py-3 md:py-4 px-4 md:px-6 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] text-sm md:text-base"
             size="lg"
           >
             <Download className="mr-2" size={18} />
-            {isGeneratingImage ? "이미지 생성 중..." : "결과 이미지 저장하기"}
+            결과 저장하기
           </Button>
 
           {/* Share Button */}
