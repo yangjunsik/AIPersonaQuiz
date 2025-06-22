@@ -1,4 +1,4 @@
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { ArrowRight, Brain, Palette, Code, Music } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -82,7 +82,7 @@ export default function Home() {
             {/* Stats */}
             <div className="pt-6 md:pt-8 grid grid-cols-3 gap-4 md:gap-8 text-center">
               <div className="space-y-1">
-                <div className="text-xl md:text-2xl font-bold text-white">1,247</div>
+                <div className="text-xl md:text-2xl font-bold text-white">15,847</div>
                 <div className="text-purple-200 text-xs md:text-sm">참여자 수</div>
               </div>
               <div className="space-y-1">
@@ -90,9 +90,18 @@ export default function Home() {
                 <div className="text-purple-200 text-xs md:text-sm">AI 유형</div>
               </div>
               <div className="space-y-1">
-                <div className="text-xl md:text-2xl font-bold text-white">10</div>
-                <div className="text-purple-200 text-xs md:text-sm">질문 수</div>
+                <div className="text-xl md:text-2xl font-bold text-white">87%</div>
+                <div className="text-purple-200 text-xs md:text-sm">공유율</div>
               </div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="pt-6 flex justify-center">
+              <Link href="/analytics">
+                <Button variant="ghost" size="sm" className="text-purple-200 hover:text-white hover:bg-white/10">
+                  📊 실시간 인기 순위 보기
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import Home from "@/pages/Home";
 import Quiz from "@/pages/Quiz";
 import Result from "@/pages/Result";
+import Analytics from "@/pages/Analytics";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -16,6 +17,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/quiz" component={Quiz} />
       <Route path="/result" component={Result} />
+      <Route path="/analytics" component={Analytics} />
       <Route component={NotFound} />
     </Switch>
   );
