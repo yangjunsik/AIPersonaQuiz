@@ -41,7 +41,7 @@ export default function Home() {
           <div className="space-y-6 md:space-y-8">
             {/* Main Title */}
             <div className="space-y-3 md:space-y-4">
-              <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white leading-tight animate-fade-in-up">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight animate-fade-in-up">
                 내 AI 분신<br />찾기
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-purple-100 font-medium px-4 animate-fade-in-up-delay">
