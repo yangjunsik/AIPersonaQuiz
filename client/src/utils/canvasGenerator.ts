@@ -123,29 +123,86 @@ export function downloadImage(imageUrl: string, filename: string) {
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   
   if (isMobile) {
-    // For mobile devices, open the image in a new tab so users can save it
-    const newWindow = window.open();
-    if (newWindow) {
-      newWindow.document.write(`
-        <html>
-          <head>
-            <title>AI 분신 결과</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <style>
-              body { margin: 0; padding: 20px; background: #f5f5f5; text-align: center; font-family: sans-serif; }
-              img { max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-              .instructions { margin-top: 20px; color: #666; font-size: 14px; }
-            </style>
-          </head>
-          <body>
-            <img src="${imageUrl}" alt="AI 분신 결과">
-            <div class="instructions">
-              이미지를 길게 눌러서 저장하세요
-            </div>
-          </body>
-        </html>
-      `);
-    }
+    // Convert blob URL to data URL for better mobile compatibility
+    fetch(imageUrl)
+      .then(response => response.blob())
+      .then(blob => {
+        const reader = new FileReader();
+        reader.onload = function() {
+          const dataUrl = reader.result as string;
+          
+          // Create a new window with the data URL
+          const newWindow = window.open('', '_blank');
+          if (newWindow) {
+            newWindow.document.write(`
+              <html>
+                <head>
+                  <title>AI 분신 결과 이미지</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                  <style>
+                    body { 
+                      margin: 0; 
+                      padding: 20px; 
+                      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                      text-align: center; 
+                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                      min-height: 100vh;
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: center;
+                      align-items: center;
+                    }
+                    .container {
+                      background: white;
+                      border-radius: 20px;
+                      padding: 20px;
+                      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+                      max-width: 90%;
+                    }
+                    img { 
+                      max-width: 100%; 
+                      height: auto; 
+                      border-radius: 15px; 
+                      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                      display: block;
+                      margin: 0 auto;
+                    }
+                    .instructions { 
+                      margin-top: 20px; 
+                      color: #555; 
+                      font-size: 16px; 
+                      line-height: 1.5;
+                      font-weight: 500;
+                    }
+                    .sub-text {
+                      margin-top: 10px;
+                      color: #888;
+                      font-size: 14px;
+                    }
+                  </style>
+                </head>
+                <body>
+                  <div class="container">
+                    <img src="${dataUrl}" alt="AI 분신 결과">
+                    <div class="instructions">
+                      📱 이미지를 길게 눌러서 저장하세요
+                    </div>
+                    <div class="sub-text">
+                      갤러리에 저장 후 SNS에 공유해보세요!
+                    </div>
+                  </div>
+                </body>
+              </html>
+            `);
+            newWindow.document.close();
+          }
+        };
+        reader.readAsDataURL(blob);
+      })
+      .catch(() => {
+        // Fallback: try opening the blob URL directly
+        window.open(imageUrl, '_blank');
+      });
   } else {
     // For desktop, use the original download method
     const link = document.createElement('a');
@@ -156,8 +213,8 @@ export function downloadImage(imageUrl: string, filename: string) {
     document.body.removeChild(link);
   }
   
-  // Clean up the blob URL
+  // Clean up the blob URL after a delay
   setTimeout(() => {
     URL.revokeObjectURL(imageUrl);
-  }, 100);
+  }, 5000);
 }
