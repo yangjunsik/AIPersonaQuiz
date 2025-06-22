@@ -280,33 +280,41 @@ export default function Result() {
 
         {/* AI Information Hub CTA */}
         <div className="mt-8">
-          <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 rounded-2xl p-8 text-white">
-            {/* Background Pattern */}
+          <div className="relative overflow-hidden bg-premium-gradient rounded-2xl p-8 text-white">
+            {/* Animated Background Pattern */}
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0" style={{
+              <div className="absolute inset-0 animate-pulse-slow" style={{
                 backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
               }} />
+            </div>
+
+            {/* Floating Geometric Shapes */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute top-4 left-4 w-8 h-8 bg-white/10 rounded-full animate-float-slow"></div>
+              <div className="absolute top-1/3 right-8 w-6 h-6 bg-white/10 rounded-lg rotate-45 animate-float-delayed"></div>
+              <div className="absolute bottom-6 left-1/4 w-10 h-10 bg-white/10 rounded-lg animate-float-slow"></div>
+              <div className="absolute bottom-1/4 right-1/4 w-4 h-4 bg-white/10 rounded-full animate-float-delayed"></div>
             </div>
             
             <div className="relative z-10">
               <div className="flex items-center justify-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-400 rounded-xl flex items-center justify-center mb-2">
+                <div className="w-12 h-12 bg-gradient-to-r from-white/20 to-white/30 rounded-xl flex items-center justify-center mb-2 backdrop-blur-sm animate-bounce-gentle">
                   <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm0 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2z" clipRule="evenodd" />
                   </svg>
                 </div>
               </div>
               
-              <h3 className="text-xl font-bold text-center mb-3">더 많은 정보를 원한다면?</h3>
-              <p className="text-gray-300 text-center mb-6 leading-relaxed">
+              <h3 className="text-xl font-bold text-center mb-3 animate-fade-in-up">더 많은 정보를 원한다면?</h3>
+              <p className="text-white/90 text-center mb-6 leading-relaxed animate-fade-in-up-delay">
                 최신 AI 랭킹부터 실시간 뉴스, 프롬프트 마켓까지<br/>
                 AI 생태계의 모든 정보를 한눈에 확인하세요
               </p>
               
-              <div className="flex justify-center">
+              <div className="flex justify-center animate-fade-in-up-delay-2">
                 <Button 
                   onClick={() => window.open('https://ayno.ai', '_blank')}
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 animate-pulse-gentle"
                 >
                   <div className="flex items-center space-x-2">
                     <span>AYNO AI 정보 허브</span>
@@ -317,18 +325,18 @@ export default function Result() {
                 </Button>
               </div>
               
-              <div className="grid grid-cols-3 gap-4 mt-6 text-center">
-                <div className="space-y-1">
-                  <div className="text-2xl font-bold text-blue-400">100+</div>
-                  <div className="text-xs text-gray-400">AI 툴 랭킹</div>
+              <div className="grid grid-cols-3 gap-4 mt-6 text-center animate-fade-in-up-delay-3">
+                <div className="space-y-1 p-3 bg-white/10 rounded-lg backdrop-blur-sm">
+                  <div className="text-2xl font-bold text-white">100+</div>
+                  <div className="text-xs text-white/70">AI 툴 랭킹</div>
                 </div>
-                <div className="space-y-1">
-                  <div className="text-2xl font-bold text-purple-400">24/7</div>
-                  <div className="text-xs text-gray-400">실시간 뉴스</div>
+                <div className="space-y-1 p-3 bg-white/10 rounded-lg backdrop-blur-sm">
+                  <div className="text-2xl font-bold text-white">24/7</div>
+                  <div className="text-xs text-white/70">실시간 뉴스</div>
                 </div>
-                <div className="space-y-1">
-                  <div className="text-2xl font-bold text-pink-400">1000+</div>
-                  <div className="text-xs text-gray-400">프롬프트</div>
+                <div className="space-y-1 p-3 bg-white/10 rounded-lg backdrop-blur-sm">
+                  <div className="text-2xl font-bold text-white">1000+</div>
+                  <div className="text-xs text-white/70">프롬프트</div>
                 </div>
               </div>
             </div>
