@@ -169,6 +169,49 @@
     animation: float-rotate-2 20s linear infinite 2s;
   }
 
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes gradient-wave {
+    0% {
+      background-position: 0% 0%;
+      background-size: 400% 400%;
+    }
+    25% {
+      background-position: 100% 100%;
+      background-size: 300% 300%;
+    }
+    50% {
+      background-position: 100% 0%;
+      background-size: 400% 400%;
+    }
+    75% {
+      background-position: 0% 100%;
+      background-size: 350% 350%;
+    }
+    100% {
+      background-position: 0% 0%;
+      background-size: 400% 400%;
+    }
+  }
+
+  .animate-gradient-shift {
+    animation: gradient-shift 3s ease-in-out infinite;
+  }
+
+  .animate-gradient-wave {
+    animation: gradient-wave 8s ease-in-out infinite;
+  }
+
   @keyframes fade-in-up {
     0% {
       opacity: 0;

@@ -280,13 +280,15 @@ export default function Result() {
 
         {/* AI Information Hub CTA */}
         <div className="mt-8">
-          <div className="relative overflow-hidden bg-result-gradient rounded-2xl p-8 text-white">
+          <div className="relative overflow-hidden rounded-2xl p-8 text-white animate-gradient-wave" style={{
+            background: 'linear-gradient(45deg, #9333ea, #ec4899, #6366f1, #8b5cf6, #d946ef, #3b82f6)',
+            backgroundSize: '400% 400%'
+          }}>
             {/* Animated Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0 animate-pulse-slow" style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-              }} />
-            </div>
+            <div className="absolute inset-0 opacity-20 animate-gradient-shift" style={{
+              background: 'linear-gradient(90deg, rgba(147,51,234,0.3), rgba(236,72,153,0.3), rgba(99,102,241,0.3))',
+              backgroundSize: '200% 200%'
+            }}></div>
 
             {/* Floating Geometric Shapes */}
             <div className="absolute inset-0 overflow-hidden">
