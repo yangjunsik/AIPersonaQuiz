@@ -2,7 +2,7 @@ import { useLocation } from "wouter";
 import { useQuiz } from "@/hooks/useQuiz";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Download, Share2, RefreshCw, ExternalLink, CheckCircle } from "lucide-react";
+import { Download, Share2, RefreshCw, ExternalLink, CheckCircle, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
 
@@ -10,6 +10,7 @@ export default function Result() {
   const [, setLocation] = useLocation();
   const { result, resetQuiz } = useQuiz();
   const { toast } = useToast();
+  const [showCaptureModal, setShowCaptureModal] = useState(false);
 
   // Redirect to home if no result
   useEffect(() => {
@@ -164,9 +165,7 @@ export default function Result() {
         <div className="space-y-3 md:space-y-4">
           {/* Download Result Image */}
           <Button
-            onClick={() => {
-              alert('📱 스크린샷으로 저장하세요!\n\n컴퓨터: Ctrl+Shift+S 또는 캡처 도구\n모바일: 전원+볼륨다운 버튼\n\n저장 후 SNS에 공유해보세요!');
-            }}
+            onClick={() => setShowCaptureModal(true)}
             className="w-full bg-quiz-gradient text-white font-semibold py-3 md:py-4 px-4 md:px-6 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] text-sm md:text-base"
             size="lg"
           >
@@ -323,6 +322,83 @@ export default function Result() {
           </div>
         </div>
 
+        {/* Capture Modal */}
+        {showCaptureModal && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-2xl max-w-sm w-full mx-auto relative overflow-hidden shadow-2xl">
+              {/* Close button */}
+              <button
+                onClick={() => setShowCaptureModal(false)}
+                className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white/90 transition-colors"
+              >
+                <X size={20} className="text-gray-600" />
+              </button>
+
+              {/* Mobile-optimized result card */}
+              <div className="relative bg-gradient-to-br from-purple-600 via-pink-600 to-indigo-700 p-6">
+                {/* Background pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+                  }} />
+                </div>
+
+                {/* Content */}
+                <div className="relative text-center text-white">
+                  {/* App title */}
+                  <h3 className="text-lg font-bold mb-4 text-purple-100">내 AI 분신 찾기</h3>
+                  
+                  {/* AI Icon */}
+                  <div className="text-6xl mb-4">{result.icon}</div>
+                  
+                  {/* AI Name */}
+                  <h2 className="text-2xl font-bold mb-2">{result.name}</h2>
+                  
+                  {/* AI Tagline */}
+                  <p className="text-purple-200 mb-4">{result.tagline}</p>
+                  
+                  {/* Description */}
+                  <div className="bg-white/15 backdrop-blur-sm rounded-lg p-4 mb-4">
+                    <p className="text-sm leading-relaxed">{result.description}</p>
+                  </div>
+                  
+                  {/* Strengths */}
+                  <div className="text-left">
+                    <h4 className="font-semibold mb-2 text-center">주요 강점</h4>
+                    <div className="space-y-1">
+                      {result.strengths.map((strength, index) => (
+                        <div key={index} className="flex items-center text-sm">
+                          <CheckCircle className="w-4 h-4 text-green-300 mr-2 flex-shrink-0" />
+                          <span>{strength}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Footer */}
+                  <div className="mt-4 pt-4 border-t border-white/20">
+                    <p className="text-xs text-purple-200">myai.quiz</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Instructions */}
+              <div className="p-6 text-center bg-white">
+                <h4 className="font-semibold text-gray-800 mb-2">📱 스크린샷으로 저장하세요!</h4>
+                <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+                  <strong>모바일:</strong> 전원 + 볼륨다운 버튼<br/>
+                  <strong>컴퓨터:</strong> Ctrl + Shift + S
+                </p>
+                <Button
+                  onClick={() => setShowCaptureModal(false)}
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                >
+                  완료
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
 
       </div>
     </div>
