@@ -213,11 +213,17 @@ export default function Result() {
                 toast({ title: "텍스트 복사됨!", description: "인스타그램 스토리나 피드에 붙여넣기 해주세요." });
               }}
               variant="outline"
-              className="py-3 border-pink-300 text-pink-700 hover:bg-pink-50 font-medium"
+              className="py-4 px-6 border-0 bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              <div className="flex items-center justify-center space-x-2">
-                <span className="text-lg">📷</span>
-                <span>인스타그램</span>
+              <div className="flex items-center justify-center space-x-3">
+                <div className="w-6 h-6 bg-white rounded-md flex items-center justify-center">
+                  <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" 
+                    alt="Instagram"
+                    className="w-4 h-4"
+                  />
+                </div>
+                <span>Instagram</span>
               </div>
             </Button>
             <Button 
@@ -227,11 +233,17 @@ export default function Result() {
                 window.open(url, '_blank');
               }}
               variant="outline"
-              className="py-3 border-blue-300 text-blue-700 hover:bg-blue-50 font-medium"
+              className="py-4 px-6 border-0 bg-gradient-to-r from-blue-400 to-blue-600 text-white hover:from-blue-500 hover:to-blue-700 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              <div className="flex items-center justify-center space-x-2">
-                <span className="text-lg">🐦</span>
-                <span>트위터</span>
+              <div className="flex items-center justify-center space-x-3">
+                <div className="w-6 h-6 bg-white rounded-md flex items-center justify-center">
+                  <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" 
+                    alt="Twitter"
+                    className="w-4 h-4"
+                  />
+                </div>
+                <span>Twitter</span>
               </div>
             </Button>
           </div>
@@ -268,21 +280,59 @@ export default function Result() {
 
         {/* AI Information Hub CTA */}
         <div className="mt-8">
-          <Card className="border-2 border-dashed border-purple-300 bg-purple-50">
-            <CardContent className="p-6 text-center">
-              <h3 className="text-lg font-bold text-purple-900 mb-2">더 많은 정보를 원한다면?</h3>
-              <p className="text-purple-700 mb-4 text-sm">
-                최신 AI 랭킹, 뉴스, 프롬프트 마켓까지<br/>
-                AI에 대한 모든 정보를 한 곳에서 확인하세요
+          <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 rounded-2xl p-8 text-white">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0" style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+              }} />
+            </div>
+            
+            <div className="relative z-10">
+              <div className="flex items-center justify-center mb-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-400 rounded-xl flex items-center justify-center mb-2">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm0 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              
+              <h3 className="text-xl font-bold text-center mb-3">더 많은 정보를 원한다면?</h3>
+              <p className="text-gray-300 text-center mb-6 leading-relaxed">
+                최신 AI 랭킹부터 실시간 뉴스, 프롬프트 마켓까지<br/>
+                AI 생태계의 모든 정보를 한눈에 확인하세요
               </p>
-              <Button 
-                onClick={() => window.open('https://ayno.ai', '_blank')}
-                className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2"
-              >
-                AYNO AI 정보 허브 방문하기 →
-              </Button>
-            </CardContent>
-          </Card>
+              
+              <div className="flex justify-center">
+                <Button 
+                  onClick={() => window.open('https://ayno.ai', '_blank')}
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                >
+                  <div className="flex items-center space-x-2">
+                    <span>AYNO AI 정보 허브</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </div>
+                </Button>
+              </div>
+              
+              <div className="grid grid-cols-3 gap-4 mt-6 text-center">
+                <div className="space-y-1">
+                  <div className="text-2xl font-bold text-blue-400">100+</div>
+                  <div className="text-xs text-gray-400">AI 툴 랭킹</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-2xl font-bold text-purple-400">24/7</div>
+                  <div className="text-xs text-gray-400">실시간 뉴스</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-2xl font-bold text-pink-400">1000+</div>
+                  <div className="text-xs text-gray-400">프롬프트</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
 
