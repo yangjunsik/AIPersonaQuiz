@@ -121,7 +121,17 @@ export default function Result() {
             <div className="relative z-10">
               {/* AI Logo */}
               <div className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg">
-                <span className="text-3xl md:text-4xl">{result.icon}</span>
+                {result.icon.startsWith('http') ? (
+                  <img 
+                    src={result.icon} 
+                    alt={result.name} 
+                    className="w-12 h-12 md:w-16 md:h-16 object-contain"
+                  />
+                ) : (
+                  <span className="text-3xl md:text-4xl">
+                    {result.icon}
+                  </span>
+                )}
               </div>
               
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">{result.name}</h2>
@@ -217,25 +227,7 @@ export default function Result() {
           </Button>
         </div>
 
-        {/* Other AI Types Preview */}
-        <div className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-gray-200">
-          <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4 md:mb-6 text-center px-2">다른 AI 유형들도 궁금하다면?</h3>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {otherAIs.map((ai) => (
-              <div
-                key={ai.id}
-                className="bg-gray-50 hover:bg-gray-100 p-3 md:p-4 rounded-xl text-center transition-colors cursor-pointer"
-              >
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-lg flex items-center justify-center mx-auto mb-1 md:mb-2 shadow-sm">
-                  <span className="text-lg md:text-2xl">{ai.icon}</span>
-                </div>
-                <div className="text-xs md:text-sm font-medium text-gray-900 leading-tight">{ai.name}</div>
-                <div className="text-xs text-gray-500 leading-tight">{ai.category}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+
       </div>
     </div>
   );
