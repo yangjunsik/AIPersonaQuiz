@@ -120,7 +120,7 @@ export default function Result() {
             
             <div className="relative z-10">
               {/* AI Logo */}
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg">
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg animate-bounce-gentle">
                 {result.icon.startsWith('http') ? (
                   <img 
                     src={result.icon} 
@@ -134,8 +134,8 @@ export default function Result() {
                 )}
               </div>
               
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">{result.name}</h2>
-              <p className="text-lg md:text-xl text-purple-100 px-2">{result.tagline}</p>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 animate-fade-in-up">{result.name}</h2>
+              <p className="text-lg md:text-xl text-purple-100 px-2 animate-fade-in-up-delay">{result.tagline}</p>
             </div>
           </div>
 

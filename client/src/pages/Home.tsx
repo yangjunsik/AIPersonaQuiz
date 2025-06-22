@@ -28,36 +28,39 @@ export default function Home() {
 
         {/* Floating geometric shapes */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-white/5 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute top-40 right-20 w-24 h-24 bg-white/3 rounded-xl rotate-45 animate-bounce" style={{ animationDuration: '3s' }}></div>
-          <div className="absolute bottom-40 left-20 w-20 h-20 bg-white/4 rounded-full blur-lg animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute bottom-20 right-40 w-16 h-16 bg-white/2 rounded-lg rotate-12 animate-bounce" style={{ animationDuration: '4s', animationDelay: '2s' }}></div>
+          <div className="absolute top-20 left-10 w-32 h-32 bg-white/5 rounded-full blur-xl animate-float-1"></div>
+          <div className="absolute top-40 right-20 w-24 h-24 bg-white/3 rounded-xl animate-float-rotate-1"></div>
+          <div className="absolute bottom-40 left-20 w-20 h-20 bg-white/4 rounded-full blur-lg animate-float-2"></div>
+          <div className="absolute bottom-20 right-40 w-16 h-16 bg-white/2 rounded-lg animate-float-rotate-2"></div>
+          <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-purple-300/10 rounded-full animate-float-3"></div>
+          <div className="absolute top-1/3 right-1/3 w-8 h-8 bg-blue-300/10 rounded-full animate-float-4"></div>
+          <div className="absolute bottom-1/3 left-1/2 w-6 h-6 bg-pink-300/10 rounded-full animate-float-5"></div>
         </div>
         
         <div className="relative max-w-4xl mx-auto px-4 py-12 md:py-24 text-center">
           <div className="space-y-6 md:space-y-8">
             {/* Main Title */}
             <div className="space-y-3 md:space-y-4">
-              <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white leading-tight animate-fade-in-up">
                 내 AI 분신<br />찾기
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-purple-100 font-medium px-4">
+              <p className="text-lg sm:text-xl md:text-2xl text-purple-100 font-medium px-4 animate-fade-in-up-delay">
                 너랑 가장 닮은 생성형 AI는 누구?
               </p>
             </div>
 
             {/* AI Icons Grid */}
             <div className="flex justify-center space-x-3 md:space-x-4 py-6 md:py-8">
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center animate-bounce-gentle" style={{ animationDelay: '0s' }}>
                 <Brain className="text-white" size={24} />
               </div>
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center animate-bounce-gentle" style={{ animationDelay: '0.2s' }}>
                 <Palette className="text-white" size={24} />
               </div>
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center animate-bounce-gentle" style={{ animationDelay: '0.4s' }}>
                 <Code className="text-white" size={24} />
               </div>
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center animate-bounce-gentle" style={{ animationDelay: '0.6s' }}>
                 <Music className="text-white" size={24} />
               </div>
             </div>
@@ -66,7 +69,7 @@ export default function Home() {
             <div className="pt-3 md:pt-4">
               <Button
                 onClick={startQuiz}
-                className="group bg-white hover:bg-gray-50 text-primary font-semibold px-6 py-3 md:px-8 md:py-4 rounded-xl text-base md:text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="group bg-white hover:bg-gray-50 text-primary font-semibold px-6 py-3 md:px-8 md:py-4 rounded-xl text-base md:text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl animate-pulse-glow"
                 size="lg"
               >
                 <span className="flex items-center space-x-2">

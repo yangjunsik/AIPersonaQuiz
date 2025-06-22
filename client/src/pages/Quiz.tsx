@@ -64,14 +64,14 @@ export default function Quiz() {
         <div className="bg-white rounded-2xl shadow-lg p-4 md:p-8 mb-6 md:mb-8">
           {/* Question illustration */}
           <div className="text-center mb-6 md:mb-8">
-            <div className="w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+            <div className="w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 animate-bounce-gentle">
               <span className="text-4xl md:text-6xl">{question.icon}</span>
             </div>
             
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 md:mb-4 px-2">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 md:mb-4 px-2 animate-fade-in-up">
               {question.title}
             </h2>
-            <p className="text-gray-600 text-base md:text-lg px-2">
+            <p className="text-gray-600 text-base md:text-lg px-2 animate-fade-in-up-delay">
               {question.description}
             </p>
           </div>
@@ -82,7 +82,8 @@ export default function Quiz() {
               <button
                 key={index}
                 onClick={() => handleAnswer(answer.value, answer.aiTypes)}
-                className="w-full p-3 md:p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all duration-200 group active:scale-[0.98]"
+                className="w-full p-3 md:p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all duration-200 group active:scale-[0.98] animate-fade-in-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3 md:space-x-4 flex-1 min-w-0">
