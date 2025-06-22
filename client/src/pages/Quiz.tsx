@@ -22,6 +22,11 @@ export default function Quiz() {
   const question = getCurrentQuestion();
   const progress = getProgress();
 
+  // Safety check for question
+  if (!question) {
+    return <div>Loading...</div>;
+  }
+
   // Redirect to result page when quiz is complete
   useEffect(() => {
     if (isQuizComplete()) {

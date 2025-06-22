@@ -109,7 +109,10 @@ export function useQuiz() {
     return aiResults[topAI[0]];
   };
 
-  const getCurrentQuestion = (): Question => {
+  const getCurrentQuestion = (): Question | null => {
+    if (currentQuestion >= questions.length || currentQuestion < 0) {
+      return null;
+    }
     return questions[currentQuestion];
   };
 

@@ -75,8 +75,25 @@
   
   .bg-premium-gradient {
     background: 
-      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.12) 0%, transparent 60%),
-      radial-gradient(circle at 70% 70%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
-      linear-gradient(135deg, hsl(247, 84%, 57%) 0%, hsl(251, 91%, 66%) 100%);
+      radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.12) 0%, transparent 60%),
+      radial-gradient(circle at 40% 70%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 60% 30%, rgba(236, 72, 153, 0.06) 0%, transparent 40%),
+      linear-gradient(135deg, 
+        hsl(247, 84%, 57%) 0%, 
+        hsl(251, 91%, 66%) 25%,
+        hsl(260, 85%, 70%) 50%,
+        hsl(270, 80%, 65%) 75%,
+        hsl(247, 84%, 57%) 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 100% 50%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 0% 100%; }
+    100% { background-position: 0% 50%; }
   }
 }
