@@ -43,38 +43,38 @@ export default function Quiz() {
     <div className="min-h-screen bg-gray-50">
       <ProgressBar current={progress.current} total={progress.total} />
       
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto px-4 py-4 md:py-8">
         {/* Question Card */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <div className="bg-white rounded-2xl shadow-lg p-4 md:p-8 mb-6 md:mb-8">
           {/* Question illustration */}
-          <div className="text-center mb-8">
-            <div className="w-32 h-32 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-6xl">{question.icon}</span>
+          <div className="text-center mb-6 md:mb-8">
+            <div className="w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+              <span className="text-4xl md:text-6xl">{question.icon}</span>
             </div>
             
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 md:mb-4 px-2">
               {question.title}
             </h2>
-            <p className="text-gray-600 text-lg">
+            <p className="text-gray-600 text-base md:text-lg px-2">
               {question.description}
             </p>
           </div>
 
           {/* Answer Options */}
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4">
             {question.answers.map((answer, index) => (
               <button
                 key={index}
                 onClick={() => handleAnswer(answer.value, answer.aiTypes)}
-                className="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all duration-200 group"
+                className="w-full p-3 md:p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all duration-200 group active:scale-[0.98]"
               >
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-4 h-4 border-2 border-gray-300 rounded-full group-hover:border-primary transition-colors"></div>
-                    <span className="text-lg font-medium text-gray-900">{answer.text}</span>
+                  <div className="flex items-center space-x-3 md:space-x-4 flex-1 min-w-0">
+                    <div className="w-4 h-4 border-2 border-gray-300 rounded-full group-hover:border-primary transition-colors flex-shrink-0"></div>
+                    <span className="text-base md:text-lg font-medium text-gray-900 break-words">{answer.text}</span>
                   </div>
-                  <div className="text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ArrowRight size={20} />
+                  <div className="text-primary opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ml-2">
+                    <ArrowRight size={18} />
                   </div>
                 </div>
               </button>

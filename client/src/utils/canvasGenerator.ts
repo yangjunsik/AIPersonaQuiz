@@ -5,9 +5,9 @@ export function generateResultImage(result: AIResult): Promise<string> {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d')!;
     
-    // Set canvas dimensions for Instagram-friendly ratio
-    canvas.width = 1080;
-    canvas.height = 1080;
+    // Set canvas dimensions for mobile-friendly sharing
+    canvas.width = 800;
+    canvas.height = 1000;
     
     // Background gradient
     const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);

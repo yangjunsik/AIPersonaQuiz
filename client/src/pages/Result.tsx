@@ -82,21 +82,21 @@ export default function Result() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto px-4 py-4 md:py-8">
         
         {/* Result Hero */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center space-x-2 bg-green-50 text-green-600 px-4 py-2 rounded-full text-sm font-medium mb-4">
-            <CheckCircle size={16} />
+        <div className="text-center mb-6 md:mb-8">
+          <div className="inline-flex items-center space-x-2 bg-green-50 text-green-600 px-3 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
+            <CheckCircle size={14} />
             <span>테스트 완료!</span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">당신의 AI 분신은...</h1>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 px-2">당신의 AI 분신은...</h1>
         </div>
 
         {/* Result Card */}
-        <div className="bg-white rounded-3xl shadow-xl overflow-hidden mb-8">
+        <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl overflow-hidden mb-6 md:mb-8">
           {/* AI Header */}
-          <div className="bg-result-gradient p-8 text-center text-white relative">
+          <div className="bg-result-gradient p-6 md:p-8 text-center text-white relative">
             <div className="absolute inset-0 opacity-10">
               <div
                 className="w-full h-full"
@@ -108,44 +108,44 @@ export default function Result() {
             
             <div className="relative z-10">
               {/* AI Logo */}
-              <div className="w-24 h-24 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <span className="text-4xl">{result.icon}</span>
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg">
+                <span className="text-3xl md:text-4xl">{result.icon}</span>
               </div>
               
-              <h2 className="text-4xl font-bold mb-2">{result.name}</h2>
-              <p className="text-xl text-purple-100">{result.tagline}</p>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">{result.name}</h2>
+              <p className="text-lg md:text-xl text-purple-100 px-2">{result.tagline}</p>
             </div>
           </div>
 
           {/* AI Description */}
-          <div className="p-8">
-            <div className="space-y-6">
+          <div className="p-4 md:p-8">
+            <div className="space-y-4 md:space-y-6">
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">당신의 특징</h3>
-                <p className="text-gray-700 leading-relaxed">
+                <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2 md:mb-3">당신의 특징</h3>
+                <p className="text-gray-700 leading-relaxed text-sm md:text-base">
                   {result.description}
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">강점</h4>
-                  <ul className="space-y-1 text-gray-700">
+                  <h4 className="font-semibold text-gray-900 mb-2 text-sm md:text-base">강점</h4>
+                  <ul className="space-y-1 text-gray-700 text-sm md:text-base">
                     {result.strengths.map((strength, index) => (
                       <li key={index} className="flex items-center">
-                        <CheckCircle className="text-green-500 mr-2" size={16} />
-                        {strength}
+                        <CheckCircle className="text-green-500 mr-2 flex-shrink-0" size={14} />
+                        <span className="break-words">{strength}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">어울리는 일</h4>
-                  <ul className="space-y-1 text-gray-700">
+                  <h4 className="font-semibold text-gray-900 mb-2 text-sm md:text-base">어울리는 일</h4>
+                  <ul className="space-y-1 text-gray-700 text-sm md:text-base">
                     {result.jobs.map((job, index) => (
                       <li key={index} className="flex items-center">
-                        <span className="text-yellow-500 mr-2">⭐</span>
-                        {job}
+                        <span className="text-yellow-500 mr-2 flex-shrink-0">⭐</span>
+                        <span className="break-words">{job}</span>
                       </li>
                     ))}
                   </ul>
@@ -156,15 +156,15 @@ export default function Result() {
         </div>
 
         {/* Action Buttons */}
-        <div className="space-y-4">
+        <div className="space-y-3 md:space-y-4">
           {/* Download Result Image */}
           <Button
             onClick={handleDownloadResult}
             disabled={isGeneratingImage}
-            className="w-full bg-quiz-gradient text-white font-semibold py-4 px-6 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]"
+            className="w-full bg-quiz-gradient text-white font-semibold py-3 md:py-4 px-4 md:px-6 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] text-sm md:text-base"
             size="lg"
           >
-            <Download className="mr-2" size={20} />
+            <Download className="mr-2" size={18} />
             {isGeneratingImage ? "이미지 생성 중..." : "결과 이미지 저장하기"}
           </Button>
 
@@ -172,10 +172,10 @@ export default function Result() {
           <Button
             onClick={handleShare}
             variant="outline"
-            className="w-full font-semibold py-4 px-6 rounded-xl transition-all duration-300"
+            className="w-full font-semibold py-3 md:py-4 px-4 md:px-6 rounded-xl transition-all duration-300 text-sm md:text-base"
             size="lg"
           >
-            <Share2 className="mr-2" size={20} />
+            <Share2 className="mr-2" size={18} />
             친구들과 공유하기
           </Button>
 
@@ -183,13 +183,13 @@ export default function Result() {
           <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-1 rounded-xl">
             <Button
               onClick={handleVisitAynoAI}
-              className="w-full bg-white hover:bg-gray-50 text-gray-900 font-bold py-4 px-6 rounded-lg transition-all duration-300"
+              className="w-full bg-white hover:bg-gray-50 text-gray-900 font-bold py-3 md:py-4 px-4 md:px-6 rounded-lg transition-all duration-300 text-xs md:text-base"
               size="lg"
             >
-              <div className="flex items-center justify-center space-x-2">
-                <span className="text-xl">🚀</span>
-                <span>다른 AI는 어떤 특징일까? → AYNO AI 랭킹 보러가기</span>
-                <ExternalLink size={16} />
+              <div className="flex items-center justify-center space-x-1 md:space-x-2">
+                <span className="text-lg md:text-xl">🚀</span>
+                <span className="text-center leading-tight">다른 AI는 어떤 특징일까?<br className="md:hidden" /> → AYNO AI 랭킹 보러가기</span>
+                <ExternalLink size={14} className="flex-shrink-0" />
               </div>
             </Button>
           </div>
@@ -198,7 +198,7 @@ export default function Result() {
           <Button
             onClick={handleRetakeQuiz}
             variant="ghost"
-            className="w-full text-gray-600 hover:text-gray-800 font-medium py-3"
+            className="w-full text-gray-600 hover:text-gray-800 font-medium py-2 md:py-3 text-sm md:text-base"
           >
             <RefreshCw className="mr-2" size={16} />
             다시 테스트하기
@@ -206,20 +206,20 @@ export default function Result() {
         </div>
 
         {/* Other AI Types Preview */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
-          <h3 className="text-xl font-semibold text-gray-900 mb-6 text-center">다른 AI 유형들도 궁금하다면?</h3>
+        <div className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-gray-200">
+          <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4 md:mb-6 text-center px-2">다른 AI 유형들도 궁금하다면?</h3>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {otherAIs.map((ai) => (
               <div
                 key={ai.id}
-                className="bg-gray-50 hover:bg-gray-100 p-4 rounded-xl text-center transition-colors cursor-pointer"
+                className="bg-gray-50 hover:bg-gray-100 p-3 md:p-4 rounded-xl text-center transition-colors cursor-pointer"
               >
-                <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mx-auto mb-2 shadow-sm">
-                  <span className="text-2xl">{ai.icon}</span>
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-lg flex items-center justify-center mx-auto mb-1 md:mb-2 shadow-sm">
+                  <span className="text-lg md:text-2xl">{ai.icon}</span>
                 </div>
-                <div className="text-sm font-medium text-gray-900">{ai.name}</div>
-                <div className="text-xs text-gray-500">{ai.category}</div>
+                <div className="text-xs md:text-sm font-medium text-gray-900 leading-tight">{ai.name}</div>
+                <div className="text-xs text-gray-500 leading-tight">{ai.category}</div>
               </div>
             ))}
           </div>

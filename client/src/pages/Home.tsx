@@ -26,61 +26,61 @@ export default function Home() {
           />
         </div>
         
-        <div className="relative max-w-4xl mx-auto px-4 py-16 md:py-24 text-center">
-          <div className="space-y-8">
+        <div className="relative max-w-4xl mx-auto px-4 py-12 md:py-24 text-center">
+          <div className="space-y-6 md:space-y-8">
             {/* Main Title */}
-            <div className="space-y-4">
-              <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+            <div className="space-y-3 md:space-y-4">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white leading-tight">
                 내 AI 분신<br />찾기
               </h1>
-              <p className="text-xl md:text-2xl text-purple-100 font-medium">
+              <p className="text-lg sm:text-xl md:text-2xl text-purple-100 font-medium px-4">
                 너랑 가장 닮은 생성형 AI는 누구?
               </p>
             </div>
 
             {/* AI Icons Grid */}
-            <div className="flex justify-center space-x-4 py-8">
-              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                <Brain className="text-white text-2xl" size={32} />
+            <div className="flex justify-center space-x-3 md:space-x-4 py-6 md:py-8">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                <Brain className="text-white" size={24} />
               </div>
-              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                <Palette className="text-white text-2xl" size={32} />
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                <Palette className="text-white" size={24} />
               </div>
-              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                <Code className="text-white text-2xl" size={32} />
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                <Code className="text-white" size={24} />
               </div>
-              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                <Music className="text-white text-2xl" size={32} />
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                <Music className="text-white" size={24} />
               </div>
             </div>
 
             {/* CTA Button */}
-            <div className="pt-4">
+            <div className="pt-3 md:pt-4">
               <Button
                 onClick={startQuiz}
-                className="group bg-white hover:bg-gray-50 text-primary font-semibold px-8 py-4 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="group bg-white hover:bg-gray-50 text-primary font-semibold px-6 py-3 md:px-8 md:py-4 rounded-xl text-base md:text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                 size="lg"
               >
                 <span className="flex items-center space-x-2">
                   <span>테스트 시작하기</span>
-                  <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                  <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
                 </span>
               </Button>
             </div>
 
             {/* Stats */}
-            <div className="pt-8 grid grid-cols-3 gap-8 text-center">
+            <div className="pt-6 md:pt-8 grid grid-cols-3 gap-4 md:gap-8 text-center">
               <div className="space-y-1">
-                <div className="text-2xl font-bold text-white">1,247</div>
-                <div className="text-purple-200 text-sm">참여자 수</div>
+                <div className="text-xl md:text-2xl font-bold text-white">1,247</div>
+                <div className="text-purple-200 text-xs md:text-sm">참여자 수</div>
               </div>
               <div className="space-y-1">
-                <div className="text-2xl font-bold text-white">16</div>
-                <div className="text-purple-200 text-sm">AI 유형</div>
+                <div className="text-xl md:text-2xl font-bold text-white">16</div>
+                <div className="text-purple-200 text-xs md:text-sm">AI 유형</div>
               </div>
               <div className="space-y-1">
-                <div className="text-2xl font-bold text-white">10</div>
-                <div className="text-purple-200 text-sm">질문 수</div>
+                <div className="text-xl md:text-2xl font-bold text-white">10</div>
+                <div className="text-purple-200 text-xs md:text-sm">질문 수</div>
               </div>
             </div>
           </div>
