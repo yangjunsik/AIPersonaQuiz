@@ -204,19 +204,21 @@ export default function Result() {
             친구들과 공유하기
           </Button>
 
-          {/* Quick Social Share */}
-          <div className="grid grid-cols-2 gap-2">
+          {/* Social Share Buttons */}
+          <div className="grid grid-cols-2 gap-3">
             <Button 
               onClick={() => {
                 const shareText = `나의 AI 분신은 ${result.name}! 너도 테스트해보자 🤖 ${window.location.origin}`;
                 navigator.clipboard.writeText(shareText);
-                toast({ title: "텍스트 복사됨!", description: "카카오톡이나 메신저에 붙여넣기 해주세요." });
+                toast({ title: "텍스트 복사됨!", description: "인스타그램 스토리나 피드에 붙여넣기 해주세요." });
               }}
               variant="outline"
-              size="sm"
-              className="border-yellow-300 text-yellow-700 hover:bg-yellow-50"
+              className="py-3 border-pink-300 text-pink-700 hover:bg-pink-50 font-medium"
             >
-              💬 메신저 공유
+              <div className="flex items-center justify-center space-x-2">
+                <span className="text-lg">📷</span>
+                <span>인스타그램</span>
+              </div>
             </Button>
             <Button 
               onClick={() => {
@@ -225,10 +227,12 @@ export default function Result() {
                 window.open(url, '_blank');
               }}
               variant="outline"
-              size="sm"
-              className="border-blue-300 text-blue-700 hover:bg-blue-50"
+              className="py-3 border-blue-300 text-blue-700 hover:bg-blue-50 font-medium"
             >
-              🐦 트위터
+              <div className="flex items-center justify-center space-x-2">
+                <span className="text-lg">🐦</span>
+                <span>트위터</span>
+              </div>
             </Button>
           </div>
 
@@ -262,19 +266,20 @@ export default function Result() {
 
 
 
-        {/* Related AI Tests Recommendation */}
+        {/* AI Information Hub CTA */}
         <div className="mt-8">
           <Card className="border-2 border-dashed border-purple-300 bg-purple-50">
             <CardContent className="p-6 text-center">
-              <h3 className="text-lg font-bold text-purple-900 mb-2">🎯 더 정확한 결과를 원한다면?</h3>
+              <h3 className="text-lg font-bold text-purple-900 mb-2">더 많은 정보를 원한다면?</h3>
               <p className="text-purple-700 mb-4 text-sm">
-                AI 전문가들이 설계한 심화 테스트로 나만의 AI 파트너를 찾아보세요
+                최신 AI 랭킹, 뉴스, 프롬프트 마켓까지<br/>
+                AI에 대한 모든 정보를 한 곳에서 확인하세요
               </p>
               <Button 
                 onClick={() => window.open('https://ayno.ai', '_blank')}
                 className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2"
               >
-                AYNO AI 심화 테스트 받기 →
+                AYNO AI 정보 허브 방문하기 →
               </Button>
             </CardContent>
           </Card>

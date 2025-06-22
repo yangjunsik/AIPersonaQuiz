@@ -119,12 +119,42 @@ export function generateResultImage(result: AIResult): Promise<string> {
 }
 
 export function downloadImage(imageUrl: string, filename: string) {
-  const link = document.createElement('a');
-  link.href = imageUrl;
-  link.download = filename;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  // Check if running on mobile
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  
+  if (isMobile) {
+    // For mobile devices, open the image in a new tab so users can save it
+    const newWindow = window.open();
+    if (newWindow) {
+      newWindow.document.write(`
+        <html>
+          <head>
+            <title>AI 분신 결과</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+              body { margin: 0; padding: 20px; background: #f5f5f5; text-align: center; font-family: sans-serif; }
+              img { max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+              .instructions { margin-top: 20px; color: #666; font-size: 14px; }
+            </style>
+          </head>
+          <body>
+            <img src="${imageUrl}" alt="AI 분신 결과">
+            <div class="instructions">
+              이미지를 길게 눌러서 저장하세요
+            </div>
+          </body>
+        </html>
+      `);
+    }
+  } else {
+    // For desktop, use the original download method
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
   
   // Clean up the blob URL
   setTimeout(() => {
